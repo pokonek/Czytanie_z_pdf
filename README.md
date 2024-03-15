@@ -1,6 +1,7 @@
 1. Pliki `part` wypakuj do jednego folderu. Ścieżkę w kodzie ustawiamy pytesseract.pytesseract.tesseract_cmd=PATH
 2. Plik poppler wypakuj do innego folderu. Ścieżkę ustawiamy w kodzie w funkcji convert_from_path.
 
+```python
 import pytesseract
 from PIL import Image
 from pdf2image import convert_from_path
@@ -14,3 +15,6 @@ for i, image in enumerate(images):
     fname = 'image'+str(i)+'.png'
     image.save(fname, "PNG")
     text+=pytesseract.image_to_string(Image.open(fname),lang='pol')
+```
+
+    
