@@ -17,4 +17,20 @@ for i, image in enumerate(images):
     text+=pytesseract.image_to_string(Image.open(fname),lang='pol')
 ```
 
-    
+    Add-Type -TypeDefinition @"
+using System;
+using System.Runtime.InteropServices;
+public class Mouse {
+    [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+    public static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint cButtons, uint dwExtraInfo);
+    public static void MoveMouse() {
+        mouse_event(1, 0, 0, 0, 0);
+    }
+}
+"@ -Language CSharp
+
+while ($true) {   
+    [Mouse]::MoveMouse()
+    Start-Sleep -Seconds 300  # Czeka 5 minut
+}
+
